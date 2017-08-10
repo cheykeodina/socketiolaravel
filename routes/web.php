@@ -11,6 +11,14 @@
 |
 */
 
+use Illuminate\Support\Facades\Redis;
+
 Route::get('/', function () {
+    // 1. Publish event with Redis
+    // 2. Node.js + Redis subscribes to event
+    // 3. Use socket.io to emit to all clients
+
+    Redis::set('name', 'Keodina');
+    return Redis::get('name');
     return view('welcome');
 });
